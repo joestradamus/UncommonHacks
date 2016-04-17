@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009-2015 Felix Bechstein -->
+<!--
+		This file is part of SMSdroid. This program is free software; you can
+		redistribute it and/or modify it under the terms of the GNU General
+		Public License as published by the Free Software Foundation; either
+		version 3 of the License, or (at your option) any later version.
+-->
+<!--
+		This program is distributed in the hope that it will be useful, but
+		WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+		General Public License for more details. You should have received a
+		copy of the GNU General Public License along with this program; If
+		not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+            android:defaultValue="light"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes_values"
+            android:key="theme"
+            android:title="@string/theme_"/>
+
+    <CheckBoxPreference
+            android:defaultValue="@bool/default_icstheme"
+            android:key="use_gridlayout"
+            android:summary="@string/use_new_layout_hint"
+            android:title="@string/use_new_layout_"/>
+
+    <PreferenceScreen
+            android:key="bubbles_in"
+            android:summary="@string/bubbles_in_hint"
+            android:title="@string/bubbles_in_"/>
+    <PreferenceScreen
+            android:key="bubbles_out"
+            android:summary="@string/bubbles_out_hint"
+            android:title="@string/bubbles_out_"/>
+
+    <EditTextPreference
+            android:inputType="number"
+            android:key="textsizen"
+            android:summary="@string/textsize_hint"
+            android:title="@string/textsize_"/>
+
+    <PreferenceScreen
+            android:key="textcolor"
+            android:summary="@string/textcolor_hint"
+            android:title="@string/textcolor_"/>
+
+    <CheckBoxPreference
+            android:key="text_color_ignore_conv"
+            android:summary="@string/textcolor_ignore_conv_hint"
+            android:title="@string/textcolor_ignore_conv_"/>
+    <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_contact_photo"
+            android:summary="@string/show_contact_photo_hint"
+            android:title="@string/show_contact_photo_"/>
+    <CheckBoxPreference
+            android:key="show_emoticons"
+            android:summary="@string/show_emoticons_hint"
+            android:title="@string/show_emoticons_"/>
+    <CheckBoxPreference
+            android:key="show_full_date"
+            android:summary="@string/show_full_date_hint"
+            android:title="@string/show_full_date_"/>
+    <CheckBoxPreference
+            android:key="hide_send"
+            android:summary="@string/hide_send_hint"
+            android:title="@string/hide_send_"/>
+    <CheckBoxPreference
+            android:key="hide_restore"
+            android:summary="@string/hide_restore_hint"
+            android:title="@string/hide_restore_"/>
+    <CheckBoxPreference
+            android:key="hide_paste"
+            android:summary="@string/hide_paste_hint"
+            android:title="@string/hide_paste_"/>
+    <CheckBoxPreference
+            android:key="hide_widget_label"
+            android:summary="@string/hide_widget_label_hint"
+            android:title="@string/hide_widget_label_"/>
+    <CheckBoxPreference
+            android:key="hide_delete_all_threads"
+            android:summary="@string/hide_delete_all_threads_hint"
+            android:title="@string/hide_delete_all_threads_"/>
+    <CheckBoxPreference
+            android:key="hide_message_count"
+            android:summary="@string/hide_message_count_hint"
+            android:title="@string/hide_message_count_"/>
+
+</PreferenceScreen>

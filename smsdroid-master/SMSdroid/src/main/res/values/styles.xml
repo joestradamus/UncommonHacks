@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009-2015 Felix Bechstein -->
+<!--
+		This file is part of SMSdroid. This program is free software; you can
+		redistribute it and/or modify it under the terms of the GNU General
+		Public License as published by the Free Software Foundation; either
+		version 3 of the License, or (at your option) any later version.
+-->
+<!--
+		This program is distributed in the hope that it will be useful, but
+		WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+		General Public License for more details. You should have received a
+		copy of the GNU General Public License along with this program; If
+		not, see <http://www.gnu.org/licenses/>.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="actionbar_text_color">#FFF0F0F0</color>
+    <color name="actionbar_background_color">#FF33470C</color>
+    <color name="ubActionBarBackgroundDark">#FF000000</color>
+    <color name="ubActionBarBackgroundLight">#FFFFFFFF</color>
+    <dimen name="edit_text_height">80dp</dimen>
+
+    <declare-styleable name="Ub0rButtonBar">
+        <attr name="ubButtonBarBackground" format="reference" />
+    </declare-styleable>
+
+    <style name="ButtonBar" parent="@android:style/ButtonBar" />
+
+    <style name="TextAppearance.Widget.Subtitle" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/actionbar_text_color</item>
+    </style>
+
+    <style name="TextAppearance.MultiComplete" parent="@android:style/TextAppearance.Widget.EditText" />
+
+    <style name="Divider">
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="Theme.SMSdroid" parent="style/Theme.AppCompat">
+        <item name="android:actionBarStyle" tools:ignore="NewApi">@style/Widget.Styled.ActionBar</item>
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="ubButtonBarBackground">@color/ubActionBarBackgroundDark</item>
+    </style>
+
+    <style name="Theme.SMSdroid_Light" parent="style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle" tools:ignore="NewApi">@style/Widget.Styled.ActionBar_Light</item>
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar_Light</item>
+        <item name="ubButtonBarBackground">@color/ubActionBarBackgroundLight</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="android:background">@color/actionbar_background_color</item>
+        <item name="background">@color/actionbar_background_color</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar_Light" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/actionbar_background_color</item>
+        <item name="background">@color/actionbar_background_color</item>
+    </style>
+
+</resources>
