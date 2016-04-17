@@ -61,6 +61,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.ub0r.android.lib.DonationHelper;
 import de.ub0r.android.lib.Utils;
@@ -75,6 +77,11 @@ import de.ub0r.android.logg0r.Log;
  */
 public final class ConversationListActivity extends AppCompatActivity implements
         OnItemClickListener, OnItemLongClickListener {
+
+    //create new hashmap here
+    public static Map<String,String> convos = new HashMap<String, String>();
+
+    public static String sms;
 
     /**
      * Tag for output.
@@ -274,11 +281,36 @@ public final class ConversationListActivity extends AppCompatActivity implements
         Uri uriSMSURI = Uri.parse("content://sms/inbox");
         Cursor cur = getContentResolver().query(uriSMSURI, null, null, null,null);
         System.out.print("hello" + cur.getColumnNames());
-        String sms = "";
         String output = "output";
+
+
+        //this while loop spits out two things. a string 'sms' with all text messages into one string. also, it provides a hashmap 'convos' with the sender as the key, and texts with them as values
         while (cur.moveToNext()) {
+
+
+            //for each name, add text to the end of the entry. Each string (for each key) contains a long ass string with all the text between them in it..
+            convos.put(cur.getString(cur.getColumnIndexOrThrow("address")).toString(), convos.get(cur.getString(cur.getColumnIndexOrThrow("address")).toString()) + cur.getString(cur.getColumnIndexOrThrow("body")).toString());
+
+            //iterate using  http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap to retrieve (for individual texts)
             sms += "From :" + cur.getString(cur.getColumnIndexOrThrow("address")).toString() + " : " + cur.getString(cur.getColumnIndexOrThrow("body")).toString()+"\n";
         }
+
+
+
+
+
+////////////////////////////
+
+//        Uri uriSMSURI = Uri.parse("content://sms/inbox");
+//        Cursor cur = getContentResolver().query(uriSMSURI, null, null, null,null);
+//        System.out.print("hello" + cur.getColumnNames());
+//        String sms = "";
+//        while (cur.moveToNext()) {
+//            sms += "From :" + cur.getString(cur.getColumnIndexOrThrow("address")).toString() + " : " + cur.getString(cur.getColumnIndexOrThrow("body")).toString()+"\n";
+//        }
+
+
+
 //        FileOutputStream fos = null;
 //        try {
 //            fos = openFileOutput(output, Context.MODE_PRIVATE);

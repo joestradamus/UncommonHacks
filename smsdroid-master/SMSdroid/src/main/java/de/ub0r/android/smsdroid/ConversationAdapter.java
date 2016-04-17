@@ -26,14 +26,18 @@ import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.CallLog.Calls;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import de.ub0r.android.lib.apis.Contact;
 import de.ub0r.android.lib.apis.ContactsWrapper;
@@ -46,6 +50,8 @@ import de.ub0r.android.logg0r.Log;
  */
 public class ConversationAdapter extends ResourceCursorAdapter {
 
+    public static ArrayList<ToneObject> ReturnObjectList = new ArrayList<ToneObject>();
+    public static ViewHolder holder;
     /**
      * Tag for logging.
      */
@@ -110,6 +116,8 @@ public class ConversationAdapter extends ResourceCursorAdapter {
      * View holder.
      */
     private static class ViewHolder {
+
+        LinearLayout tvLayout;
 
         TextView tvBody;
 
@@ -235,9 +243,10 @@ public class ConversationAdapter extends ResourceCursorAdapter {
         final Conversation c = Conversation.getConversation(context, cursor, false);
         final Contact contact = c.getContact();
 
-        ViewHolder holder = (ViewHolder) view.getTag();
+        holder = (ViewHolder) view.getTag();
         if (holder == null) {
             holder = new ViewHolder();
+            holder.tvLayout = (LinearLayout) view.findViewById(R.id.ListItemLayout);
             holder.tvPerson = (TextView) view.findViewById(R.id.addr);
             holder.tvCount = (TextView) view.findViewById(R.id.count);
             holder.tvBody = (TextView) view.findViewById(R.id.body);
@@ -261,6 +270,58 @@ public class ConversationAdapter extends ResourceCursorAdapter {
         if (textSize > 0) {
             holder.tvBody.setTextSize(textSize);
         }
+
+        //Analysis.colorInt = (int)Math.floor(Math.random() * 3);
+        int i = 0;
+        while ( i < 8 ) {
+            for (String key : ConversationListActivity.convos.keySet()) {
+                String value = ConversationListActivity.convos.get(key);
+                //analyze the tone for each convo with a contact
+                Analysis result = new Analysis();
+                result.execute(value);
+
+                if (!ReturnObjectList.isEmpty()) {
+                    ToneObject temp = ReturnObjectList.get(0);
+                    if (temp.EmotionTone.Joy >= 0.2) {
+                        holder.tvLayout.setBackgroundColor(Color.GREEN);
+                    }
+                    else if (temp.EmotionTone.Joy >= 0.1){
+                        holder.tvLayout.setBackgroundColor(Color.YELLOW);
+                    }
+                    else {
+                        holder.tvLayout.setBackgroundColor(Color.RED);
+                    }
+                    ReturnObjectList.remove(0);
+                }
+
+                i++;
+        }
+
+
+
+            /*
+            // here is where you can change the color
+            if ( result.ReturnObject.EmotionTone.Joy >= 0.3) {
+                //set background to green
+                holder.tvLayout.setBackgroundColor(Color.GREEN);
+            }
+
+            else if ( result.ReturnObject.EmotionTone.Anger >= 0.3) {
+                //set background to yellow
+                holder.tvLayout.setBackgroundColor(Color.YELLOW);
+            }
+
+            else {
+                //set background to red
+                holder.tvLayout.setBackgroundColor(Color.RED);
+            }*/
+        }
+
+        System.out.println(ReturnObjectList.toString());
+
+
+
+
 
         final int col = textColor;
         if (col != 0) {

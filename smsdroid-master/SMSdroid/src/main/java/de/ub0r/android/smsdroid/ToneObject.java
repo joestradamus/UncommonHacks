@@ -1,3 +1,5 @@
+package de.ub0r.android.smsdroid;
+
 /**
  * Created by jmcadams on 4/16/16.
  *
